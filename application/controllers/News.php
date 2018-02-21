@@ -11,7 +11,7 @@ class News extends CI_Controller {
         public function index()
         {
                 $data['news'] = $this->news_model->get_news();
-                $data['title'] = 'News archive';
+                $data['title'] = 'To Do';
 
                 $this->load->view('templates/header', $data);
                 $this->load->view('news/index', $data);
@@ -38,7 +38,7 @@ class News extends CI_Controller {
             $this->load->helper('form');
             $this->load->library('form_validation');
 
-            $data['title'] = 'Create a news item';
+            $data['title'] = 'Maak een lijst';
 
             $this->form_validation->set_rules('title', 'Title', 'required');
 
@@ -62,19 +62,19 @@ class News extends CI_Controller {
           $this->load->helper('form');
           $this->load->library('form_validation');
 
-          $data['title'] = 'Update Group';
-
+          $data = array(
+              'title' => 'Update een lijst',
+              'id' => $id
+           );
           $this->form_validation->set_rules('title', 'Title', 'required');
-          $id = array('id' => $id);
-          if ($this->form_validation->run() === FALSE)
-          {
+
+          if ($this->form_validation->run() === FALSE) {
               $this->load->view('templates/header', $data);
-              $this->load->view('news/update');
+              $this->load->view('news/update', $data);
               $this->load->view('templates/footer');
 
-          }
-          else
-          {
+          } else {
+
               $this->news_model->update_news($id);
               $this->load->view('news/success');
           }

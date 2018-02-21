@@ -23,14 +23,12 @@ class News_model extends CI_Model {
       $data = array(
           'title' => $this->input->post('title'),
           'slug' => $slug,
-          'text' => $this->input->post('text')
       );
 
       return $this->db->insert('news', $data);
   }
   public function update_news($id)
   {
-    print_r($id);die();
 
     $this->load->helper('url');
 
@@ -39,6 +37,6 @@ class News_model extends CI_Model {
     $data = $this->input->post();
 
     $this->db->where('id', $id);
-    $this->db->update('newse', $data);
+    $this->db->update('news', $data);
   }
 }
