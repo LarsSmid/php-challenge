@@ -1,45 +1,53 @@
 <?php
-class News extends CI_Controller {
+class Task extends CI_Controller {
 
         public function __construct()
         {
                 parent::__construct();
-                $this->load->model('news_model');
+                $this->load->model('tasks');
                 $this->load->helper('url_helper');
         }
 
         public function index()
         {
-                $data['news'] = $this->news_model->get_news();
-                $data['title'] = 'To Do';
+                $data['taken'] = $this->tasks->get_news();
+                $data['title'] = 'Taken';
 
                 $this->load->view('templates/header', $data);
-                $this->load->view('news/index', $data);
+                $this->load->view('taken/index', $data);
                 $this->load->view('templates/footer');
         }
 
+        public function getWhere($id = null)
+        {
+          $data['taken'] = $this->tasks->get_where($id);
+          $data['title'] = 'Taken';
 
+          $this->load->view('templates/header', $data);
+          $this->load->view('taken/index', $data);
+          $this->load->view('templates/footer');
+        }
 
         public function create()
         {
             $this->load->helper('form');
             $this->load->library('form_validation');
 
-            $data['title'] = 'Maak een lijst';
+            $data['title'] = 'Maak een taak';
 
-            $this->form_validation->set_rules('title', 'Title', 'required');
+            $this->form_validation->set_rules('taak', 'Taak', 'required');
 
             if ($this->form_validation->run() === FALSE)
             {
                 $this->load->view('templates/header', $data);
-                $this->load->view('news/create');
+                $this->load->view('taken/create');
                 $this->load->view('templates/footer');
 
             }
             else
             {
-                $this->news_model->set_news();
-                redirect('/news', 'refresh');
+                $this->tasks->set_news();
+                redirect('/task', 'refresh');
             }
         }
 
@@ -50,26 +58,26 @@ class News extends CI_Controller {
           $this->load->library('form_validation');
 
           $data = array(
-              'title' => 'Update een lijst',
+              'title' => 'Update een taak',
               'id' => $id
            );
-          $this->form_validation->set_rules('title', 'Title', 'required');
+          $this->form_validation->set_rules('taak', 'Taak', 'required');
 
           if ($this->form_validation->run() === FALSE) {
               $this->load->view('templates/header', $data);
-              $this->load->view('news/update', $data);
+              $this->load->view('taken/update', $data);
               $this->load->view('templates/footer');
 
           } else {
 
-              $this->news_model->update_news($id);
-              redirect('/news', 'refresh');
+              $this->tasks->update_news($id);
+              redirect('/task', 'refresh');
           }
         }
 
         public function delete($id = null)
         {
-          $this->db->delete('news', array('id' => $id));
-          redirect('/news', 'refresh');
+          $this->db->delete('taken', array('id' => $id));
+          redirect('/task', 'refresh');
         }
 }
