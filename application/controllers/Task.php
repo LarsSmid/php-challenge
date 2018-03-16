@@ -28,26 +28,30 @@ class Task extends CI_Controller {
           $this->load->view('templates/footer');
         }
 
-        public function create()
+        public function create($id = null)
         {
+          echo $id;
             $this->load->helper('form');
             $this->load->library('form_validation');
 
-            $data['title'] = 'Maak een taak';
+            $data = array(
+              'title' => 'Maak een taak',
+              'group_id' => $id
+            );
 
             $this->form_validation->set_rules('taak', 'Taak', 'required');
 
             if ($this->form_validation->run() === FALSE)
             {
                 $this->load->view('templates/header', $data);
-                $this->load->view('taken/create');
+                $this->load->view('taken/create', $data);
                 $this->load->view('templates/footer');
 
             }
             else
             {
                 $this->tasks->set_news();
-                redirect('/task', 'refresh');
+                redirect('/news', 'refresh');
             }
         }
 

@@ -24,4 +24,5 @@
 <?php endforeach; ?>
     </tbody>
 </table>
-<a href="/php_challenge/index.php/task/create" class="btn btn-primary pull-">Insert</a>
+<?php echo $id?>
+<a href="/php_challenge/index.php/task/create/4" class="btn btn-primary pull-">Insert</a>

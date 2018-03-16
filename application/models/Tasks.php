@@ -28,6 +28,7 @@ class Tasks extends CI_Model {
 
       $slug = url_title($this->input->post('title'), 'dash', TRUE);
 
+
       $data = array(
           'taak' => $this->input->post('taak'),
       );
