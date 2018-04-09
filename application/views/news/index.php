@@ -14,13 +14,13 @@
           <th scope="row"><?php echo $news_item['id']; ?></th>
           <td><?php echo $news_item['title']; ?></td>
           <td>
-            <a href="/php_challenge/index.php/task/getWhere/<?php echo $news_item['id']; ?>" class="btn btn-info">View</a>
-            <a href="/php_challenge/index.php/news/update/<?php echo $news_item['id']; ?>" class="btn btn-warning">edit</a>
-            <a href="/php_challenge/index.php/news/delete/<?php echo $news_item['id']; ?>" class="btn btn-danger">delete</a>
+            <a href="/index.php/task/getWhere/<?php echo $news_item['id']; ?>" class="btn btn-info">View</a>
+            <a href="/index.php/news/update/<?php echo $news_item['id']; ?>" class="btn btn-warning">edit</a>
+            <a href="/index.php/news/delete/<?php echo $news_item['id']; ?>" class="btn btn-danger">delete</a>
           </td>
         </tr>
 
 <?php endforeach; ?>
     </tbody>
 </table>
-<a href="/php_challenge/index.php/news/create" class="btn btn-primary pull-">Insert</a>
+<a href="/index.php/news/create" class="btn btn-primary pull-">Insert</a>

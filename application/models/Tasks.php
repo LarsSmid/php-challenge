@@ -13,8 +13,8 @@ class Tasks extends CI_Model {
     return $query->row_array();
   }
 
-  public function get_where($id){
-      $query = $this->db->get_where('taken', array('group_id' => $id));
+  public function get_where($groupId){
+      $query = $this->db->get_where('taken', array('group_id' => $groupId));
       return $query->result_array();
 
 
@@ -31,8 +31,8 @@ class Tasks extends CI_Model {
 
       $data = array(
           'taak' => $this->input->post('taak'),
+          'group_id' => $this->input->post('group_id'),
       );
-
       return $this->db->insert('taken', $data);
   }
   public function update_news($id)

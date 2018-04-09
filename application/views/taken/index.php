@@ -1,4 +1,4 @@
-
+<?php print_r($taken[0]['id'])  ?>
 <table class="table">
   <thead class="thead-inverse">
     <tr>
@@ -16,13 +16,12 @@
           <td><?php echo $taak['taak']; ?></td>
           <td><?php echo $taak['group_id']; ?></td>
           <td>
-            <a href="/php_challenge/index.php/task/update/<?php echo $taak['id']; ?>" class="btn btn-warning">edit</a>
-            <a href="/php_challenge/index.php/task/delete/<?php echo $taak['id']; ?>" class="btn btn-danger">delete</a>
+            <a href="/index.php/task/update/<?php echo $taak['id']; ?>" class="btn btn-warning">edit</a>
+            <a href="/index.php/task/delete/<?php echo $taak['id']; ?>" class="btn btn-danger">delete</a>
           </td>
         </tr>
 
 <?php endforeach; ?>
     </tbody>
 </table>
-<?php echo $id?>
-<a href="/php_challenge/index.php/task/create/4" class="btn btn-primary pull-">Insert</a>
+<a href="/index.php/task/create/<?php print_r($taken[0]['id'])  ?>"   class="btn btn-primary pull-">Insert</a>

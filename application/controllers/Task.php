@@ -18,9 +18,10 @@ class Task extends CI_Controller {
                 $this->load->view('templates/footer');
         }
 
-        public function getWhere($id = null)
+        public function getWhere($groupId = null)
         {
-          $data['taken'] = $this->tasks->get_where($id);
+
+          $data['taken'] = $this->tasks->get_where($groupId);
           $data['title'] = 'Taken';
 
           $this->load->view('templates/header', $data);
@@ -36,7 +37,7 @@ class Task extends CI_Controller {
 
             $data = array(
               'title' => 'Maak een taak',
-              'group_id' => $id
+              'id' => $id,
             );
 
             $this->form_validation->set_rules('taak', 'Taak', 'required');
@@ -75,7 +76,7 @@ class Task extends CI_Controller {
           } else {
 
               $this->tasks->update_news($id);
-              redirect('/task', 'refresh');
+              print_r($data);
           }
         }
 
